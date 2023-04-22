@@ -8,14 +8,13 @@ export default class UsersController {
 
         try {
             console.log(request.body())
-
+            
             const newUser = await User.create({
                 name: request.body().name,
                 username: request.body().username,
                 email: request.body().email,
                 password: request.body().password
         })
-
             response.status(200)
             response.send({
                 message: 'Index',
