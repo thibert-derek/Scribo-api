@@ -7,7 +7,7 @@ export default class IndicesController {
         try {
             response.status(200)
             response.send({
-                message: 'Index',
+                message: 'Message Received',
             })
             return
         }   catch (error) {

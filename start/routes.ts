@@ -22,4 +22,10 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', 'IndicesController.index')
 
+//User Routes
+
 Route.post('/user', 'UsersController.create')
+
+//Blog Routes
+
+Route.post('/blog', 'BlogController.create')

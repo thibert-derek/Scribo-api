@@ -17,7 +17,7 @@ export default class UsersController {
         })
             response.status(200)
             response.send({
-                message: 'Index',
+                message: 'Received mwssage',
                 user: newUser,
             })
             return
