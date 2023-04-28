@@ -9,7 +9,7 @@ public async create(ctx: HttpContextContract){
     try {
         console.log(request.body())
         
-        const newUser = await Blog.create({
+        const newBlog = await Blog.create({
             title: request.body().title,
             body: request.body().body,
             userId: request.body().userId
@@ -17,7 +17,7 @@ public async create(ctx: HttpContextContract){
         response.status(200)
         response.send({
             message: 'Blog created successfully',
-            user: newUser,
+            user: newBlog,
         })
         return
     }   catch (error) {

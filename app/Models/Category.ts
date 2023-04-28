@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, HasMany, hasMany, column } from '@ioc:Adonis/Lucid/Orm'
+import { manyToMany, ManyToMany, BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 import Blog from 'App/Models/Blog'
 
@@ -10,10 +10,10 @@ export default class Category extends BaseModel {
   public id: number
 
   @column()
-  public title: string
+  public blogId: number
 
   @column()
-  public blogId: number
+  public title: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -21,6 +21,13 @@ export default class Category extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @hasMany(() => Blog)
-  public blogs: HasMany<typeof Blog>
+  @manyToMany(() => Blog, {
+    pivotTable: 'blog_category',
+    localKey: 'id',
+    pivotForeignKey: 'categoryId',
+    relatedKey: 'id',
+    pivotRelatedForeignKey: 'blogId',
+  })
+
+  public blogs: ManyToMany<typeof Blog>
 }

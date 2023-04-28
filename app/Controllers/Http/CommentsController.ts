@@ -1,22 +1,23 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import Category from 'App/Models/Category'
+import Comment from 'App/Models/Comment'
 
-export default class CategoriesController {
+export default class CommentsController {
     public async create(ctx: HttpContextContract){
-        const {request, response} = ctx
-
+        const { request, response } = ctx
+    
         try {
             console.log(request.body())
             
-            const newCategory = await Category.create({
-                title: request.body().title,
+            const newComment = await Comment.create({
+                body: request.body().body,
+                userId: request.body().userId,
                 blogId: request.body().blogId
         })
             response.status(200)
             response.send({
-                message: 'Category created successfully',
-                user: newCategory,
+                message: 'Comment created successfully',
+                user: newComment,
             })
             return
         }   catch (error) {
@@ -27,5 +28,4 @@ export default class CategoriesController {
             return
         }
     }
-
 }
